@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class BookController {
 	
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String friendList(Model model) {
-		return "friendList";
-	}
+//	@RequestMapping(value = "/index", method = RequestMethod.GET)
+//	public String friendList(Model model) {
+//		return "friendList";
+//	}
 
 }
