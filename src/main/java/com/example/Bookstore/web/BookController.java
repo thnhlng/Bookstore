@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Bookstore.domain.Book;
 import com.example.Bookstore.domain.BookRepository;
+import com.example.Bookstore.domain.Category;
 import com.example.Bookstore.domain.CategoryRepository;
 
 @Controller
@@ -53,6 +55,8 @@ public class BookController {
 	return"redirect:booklist";
 	}
 	
+	//delete book
+	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
     	repository.deleteById(bookId);
@@ -66,6 +70,11 @@ public class BookController {
     	model.addAttribute("categorys", cRepository.findAll());
         return "modifybook";
     } 
+    
+    @RequestMapping(value="/login")
+    public String login() {
+    	return "login";
+    }
 	
     //RESTFUL service
     @RequestMapping(value="/books", method = RequestMethod.GET)
@@ -77,6 +86,16 @@ public class BookController {
     public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId){
 		return this.repository.findById(bookId);
     }
+    
+    @RequestMapping(value="/addBook/{title}/{author}", method = RequestMethod.GET)
+    public @ResponseBody Object addBookRest(@PathVariable("title") String bookTitle, @PathVariable("author") String author){
+		Book t = new Book(bookTitle, author, 2001, "TISB", 23, cRepository.findByName("Classic").get(0));
+    	this.repository.save(t);
+    	return this.repository.findByTitle(bookTitle);
+    }
+    
+    
+    
 
 	
 	
