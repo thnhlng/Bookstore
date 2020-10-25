@@ -31,9 +31,9 @@ public class BookstoreApplication {
 			repository.save(b1);
 			repository.save(b2);
 			
-			
-			User user1 = new User("user", "$2a$10$Y1BGw46j6dSZjiR78rYdrekj0s.E0kHmNv2/xtc3VuQVUnMNRFt3y", "USER");
-			User user2 = new User("admin", "$2a$10$pF3j9ngNdKOQzsn2CRgQgu8Kyyo5rcndfNjfswP3C/OjBjaPAy.ay", "ADMIN");
+			//password1 / password2
+			User user1 = new User("user", "$2y$12$MZ9kzNmNvFLDlp8s/NbJPuRTJVRsp4pBIOZ0dDSiggyXZA0fYIxlK", "USER");
+			User user2 = new User("admin", "$2y$12$MZ9kzNmNvFLDlp8s/NbJPuRTJVRsp4pBIOZ0dDSiggyXZA0fYIxlK ", "ADMIN");
 			urepository.save(user1);
 			urepository.save(user2);
 
