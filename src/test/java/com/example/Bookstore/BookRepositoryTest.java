@@ -7,10 +7,9 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.Bookstore.domain.Book;
 import com.example.Bookstore.domain.BookRepository;
@@ -18,6 +17,7 @@ import com.example.Bookstore.domain.Category;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
 public class BookRepositoryTest {
 
 	@Autowired
@@ -34,7 +34,7 @@ public class BookRepositoryTest {
 
 	@Test
 	public void createNewBook() {
-		Book btest = new Book("Test", "Test", 2011, "222234", 20.00, new Category("Test"));
+		Book btest = new Book("Test2", "Test", 2011, "222234", 20.00, new Category("Test"));
 		this.repository.save(btest);
 		System.out.println("created: " + btest);
 		assertThat(btest.getId()).isNotNull();
@@ -42,10 +42,12 @@ public class BookRepositoryTest {
 	
 	@Test
 	 public void deleteBook() {
-    	this.repository.deleteById((long) 4);
-    	List<Book> books = repository.findByTitle("Sapiens");
+		Book btest = new Book("Test", "Test", 2011, "222234", 20.00, new Category("Test"));
+		this.repository.save(btest);
+    	this.repository.delete(btest);
+    	//List<Book> books = repository.findByTitle("Sapiens");
 	
-		System.out.println("delete:" + books);
+		System.out.println("delete:" + btest);
 
 	}
 }
