@@ -42,13 +42,16 @@ public class BookController {
 //		return new Book(name);
 //	}
 	
-	@RequestMapping("/")
-	public String bookListRoot(Model model) {
-		model.addAttribute("books", repository.findAll());
-		return "booklist";
-	}
+	// Show all books
+
+//	@RequestMapping(value= {​​​​​"/", "/booklist"}​​​​​)
+//	    public String bookList(Model model) {​​​​​
+//	        model.addAttribute("books", repository.findAll());
+//	        return "booklist";
+//	    }​​​​​
 	
-	@RequestMapping("/booklist")
+	
+	@RequestMapping(value= {"/", "/booklist"})
 	public String bookList(Model model) {
 		model.addAttribute("books", repository.findAll());
 		return "booklist";
