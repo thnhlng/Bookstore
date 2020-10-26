@@ -33,7 +33,7 @@ public class BookController {
 	
 //	//Test
 	@RequestMapping("/")
-	public @ResponseBody String greeting() {
+	public String greeting() {
 		 return "redirect:../booklist";
 	}
 //
