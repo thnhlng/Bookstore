@@ -31,16 +31,16 @@ public class BookController {
 	
 	private final AtomicLong counter = new AtomicLong();
 	
-	//Test
-	@RequestMapping("/")
-	public @ResponseBody String greeting() {
-		return "Hello World";
-	}
-
-	@RequestMapping("/hello")
-	public Book test(@RequestParam(value = "title", defaultValue = "World") String name) {
-		return new Book(name);
-	}
+//	//Test
+//	@RequestMapping("/")
+//	public @ResponseBody String greeting() {
+//		return "Hello World";
+//	}
+//
+//	@RequestMapping("/hello")
+//	public Book test(@RequestParam(value = "title", defaultValue = "World") String name) {
+//		return new Book(name);
+//	}
 	
 	@RequestMapping("/booklist")
 	public String bookList(Model model) {
