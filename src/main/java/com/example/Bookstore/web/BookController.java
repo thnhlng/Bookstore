@@ -32,10 +32,10 @@ public class BookController {
 	private final AtomicLong counter = new AtomicLong();
 	
 //	//Test
-//	@RequestMapping("/")
-//	public @ResponseBody String greeting() {
-//		return "Hello World";
-//	}
+	@RequestMapping("/")
+	public @ResponseBody String greeting() {
+		return"redirect:booklist";
+	}
 //
 //	@RequestMapping("/hello")
 //	public Book test(@RequestParam(value = "title", defaultValue = "World") String name) {
